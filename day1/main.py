@@ -7,6 +7,8 @@ class Dial:
         self.counter = 0
 
     def turn_left(self, steps):
+        if self.position == 0:
+            self.counter -= 1
         self.position = (self.position - steps)
         if self.position <= 0:
             rotations = abs(self.position) // 100
@@ -18,11 +20,12 @@ class Dial:
 
     def turn_right(self, steps):
         self.position = (self.position + steps)
-        if self.position > 199:
+        if self.position > 99:
             rotations = self.position // 100
             self.counter += rotations
-        if self.position > 99:
             self.position = int(str(self.position)[-2:])
+
+        
 
     def check_position(self):
         if self.position == 100:
@@ -31,7 +34,7 @@ class Dial:
 
 
 def main():
-    test_input = ["L68",
+    test_input = ["L1068",
         "L30",
         "R148",
         "L5",
