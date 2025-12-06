@@ -5,7 +5,7 @@ import re
 def main():
 
     with open("day2/input.txt", "r") as f:
-        data = f.read().replace("\n", "")  # flatten
+        data = f.read().replace("\n", "")
         parts = data.split(",")   
 
     invalid_ids = []
