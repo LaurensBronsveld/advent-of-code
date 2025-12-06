@@ -6,24 +6,24 @@ def main():
         data = f.read()
         banks = data.split("\n")   
     joltages = []
+    digits = 12
     for bank in banks:
-        left = 0
-        right = 0
-        position = 0
-        for i in range (len(bank) - 1):
-            number = int(bank[i])
-            if number > left:
-                left = number
-                position = bank.index(bank[i])
-                
-        for i in range(position + 1, len(bank)):
-            number = int(bank[i])
-            if number > right:
-                right = number
-        print(f"the Joltage for bank {bank} is {int(str(left) + str(right))}")
-        joltages.append(int(str(left) + str(right)))
+        batteries = []
+        position = -1
+        counter = digits
+        for i in range(digits):
+            counter -= 1
+            value = 0
+            for i in range (position + 1,  len(bank) - counter):
+                number = int(bank[i])
+                if number > value:
+                    value = number
+                    position = i
+            batteries.append(value)
+
+        print(f"the Joltage for bank {bank} is {int(''.join(map(str, batteries)))}")
+        joltages.append(int(''.join(map(str, batteries))))
 
     print(f"the total of output is {math.fsum(joltages)}")
 if __name__ == '__main__':
     main()
-
